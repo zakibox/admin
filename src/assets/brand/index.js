@@ -1,0 +1,1 @@
+export { default as MonAutoEcoleLogo } from "./MonAutoEcole.svg";

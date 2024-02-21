@@ -1,7 +1,11 @@
-import { Inter } from "next/font/google";
+import { Tajawal } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Header, SideBar } from "../components";
+import { Suspense } from "react";
+import PrelineScript from "@/components/PrelineScript";
+
+const primary = Tajawal({ subsets: ["latin"] , weight:["500","700","800"]});
 
 export const metadata = {
   title: "Create Next App",
@@ -10,8 +14,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="ar" dir="ltr">
+      <body className={primary.className}>
+      <>
+        <Header />
+
+        <SideBar />
+
+        <div className="w-full pt-10 sm:px-6 md:px-8 lg:ps-72">
+          <div className="p-4 mx-auto md:p-6 lg:p-8">
+            {children}
+          </div>
+        </div>
+      </>
+      </body>
+      <PrelineScript />
     </html>
   );
 }
