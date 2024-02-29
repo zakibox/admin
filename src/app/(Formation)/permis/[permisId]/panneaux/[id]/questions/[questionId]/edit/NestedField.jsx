@@ -19,7 +19,7 @@ function AnswerFields({ questionIndex, control, register }) {
             {answersFields.map((answers, i) => (
                 <div className="flex gap-4 mt-4">
                     <input type="text"   {...register(
-                        `data.sub_questions_list.questions.${questionIndex}.answers.${i}.text.ar`)} className="p-4 border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none 
+                        `data.sub_questions_list.questions.${questionIndex}.answers.${i}.text.ar`)}  className="p-4 border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none 
                                                 focus:pt-6
                                                 focus:pb-2"
                     />
@@ -30,10 +30,10 @@ function AnswerFields({ questionIndex, control, register }) {
                                                 focus:pb-2"
 
                     />
-                    <input type="checkbox" {...register(`data.sub_questions_list.questions.${questionIndex}.answers.${i}.isCorrect`)} className="shrink-0 mt-0.5 border-gray-200 rounded text-primary-600 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none "
-                        id="name" 
+                    <input type="checkbox" {...register(`data.sub_questions_list.questions.${questionIndex}.answers.${i}.isCorrect`)} className="shrink-0 mt-0.5 border-gray-200 rounded text-primary-600 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none " 
+                        id="name"
                     />
-
+                   
 
 
                     {canRemoveAnswer && (

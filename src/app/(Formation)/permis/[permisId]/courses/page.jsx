@@ -1,31 +1,30 @@
 'use client'
 
-import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import Link from "next/link";
 
-export default async function EducationRoutierePage() {
 
+export default async function coursePage({ params }) {
 
-    // const locale = useLocale
+    const courses = await fetchCourses(params.permisId);
+    const permit = await fetchPermit();
+    
+ 
 
-    const educations = await fetchEducations();
-     console.log(educations)
-    // Check for errors
-    if (educations.errors) {
-        throw Error("Error fetching educations");
-    }
     
 
-     function handleDelete(id) {
+
+
+    function handleDelete(id) {
         try {
-             axios.delete(`http://127.0.0.1:8000/api/educationRoutieres/${id}`);
+            axios.delete(`http://127.0.0.1:8000/api/courses/${id}`);
             // After successful deletion, you might want to update the UI by refetching the education items
-            console.log("Education item deleted successfully");
-            window.location.href = "/educations";
+            console.log("course item deleted successfully");
+            window.location.href = `/permis/${params.permisId}/courses`;
             // You can also update the educations state if necessary
         } catch (error) {
-            console.error("Error deleting education item:", error);
+            console.error("Error deleting course item:", error);
         }
     }
     return (
@@ -33,20 +32,40 @@ export default async function EducationRoutierePage() {
 
             <div className="flex items-center justify-between mb-4 md:mb-6 lg:mb-8">
 
-                <h1 className="mb-2 text-3xl font-bold text-slate-900">Gerer les cours d'E.R</h1>
-                <Link href={`/educations/create`}>
+
+                <h1 className="mb-2 text-3xl font-bold text-slate-900">Gerer les cours</h1>
+                <Link href={`courses/create`}>
                     <button
                         className="p-3 md:px-6 inline-flex items-center gap-x-2 text-sm md:text-base font-semibold rounded-lg border border-transparent bg-primary-500 text-white hover:bg-primary-600 disabled:opacity-50 disabled:pointer-events-none  " data-hs-overlay="#hs-scroll-inside-body-modal"
                         href="#"
                     >
                         <PlusIcon className="w-4 h-4" strokeWidth={2.5} />
                         <span className="hidden md:inline-block">
-                            Ajouter une E.R
+                            ajouter course
                         </span>
                     </button>
                 </Link>
 
+
             </div>
+            <div class="hs-dropdown relative inline-flex">
+                <button id="hs-dropdown-basic" type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none ">
+                    choix de permis
+                    <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                </button>
+
+                <div 
+                value={params.permisId || ""} class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2" aria-labelledby="hs-dropdown-basic">
+                {permit.data && (permit.data).map(permis => (
+                    <a  key={permis.id} value={permis.id} class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 " href={`/permis/${permis.id}/courses`}>
+                        {permis.name}
+                    </a>
+                ))}
+                   
+                   
+                </div>
+            </div>
+
 
             <div className="overflow-x-auto">
                 <div className="p-1.5 min-w-full inline-block align-middle">
@@ -104,15 +123,15 @@ export default async function EducationRoutierePage() {
                             </thead>
 
                             <tbody className="divide-y divide-slate-200">
-                                {Object.values(educations.data) && (educations.data).map(education => (
-                                    <tr key={education.id}>
+                                {courses.data && (courses.data).map(course => (
+                                    <tr key={course.id}>
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3">
                                                 <div className="flex items-center gap-x-2">
                                                     <div className="grow">
                                                         <span className="text-sm md:text-base text-slate-600">
-                                                        {education.img && <img src={education.img} alt="Education Image" className="h-16 w-auto" />}
-                                                           
+                                                            {course.img && <img src={course.img} alt="Education Image" className="h-16 w-auto" />}
+
                                                         </span>
                                                     </div>
 
@@ -125,7 +144,7 @@ export default async function EducationRoutierePage() {
                                                 <div className="flex items-center gap-x-2">
                                                     <div className="grow">
                                                         <span className="text-sm md:text-base text-slate-600">
-                                                            {education.title}
+                                                            {course.title}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -135,7 +154,7 @@ export default async function EducationRoutierePage() {
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3">
                                                 <span className="text-sm md:text-base text-slate-600">
-                                                    {education.content}
+                                                    {course.content}
                                                 </span>
                                             </div>
                                         </td>
@@ -143,10 +162,10 @@ export default async function EducationRoutierePage() {
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3 text-center">
                                                 <span className="text-sm md:text-base text-slate-600">
-                                                    {education.questionsNum}
+                                                    {course.questionsNum}
                                                 </span>
                                             </div>
-                                           
+
                                         </td>
                                         <td className="h-px w-px whitespace-nowrap">
                                             <div className="px-6 py-1.5">
@@ -157,18 +176,18 @@ export default async function EducationRoutierePage() {
                                                     </button>
                                                     <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-gray-200 min-w-[10rem] z-10 bg-white shadow-2xl rounded-lg p-2 mt-2">
                                                         <div className="py-2 first:pt-0 last:pb-0">
-                                                            <Link href={`/educations/${education.id}`}>
+                                                            <Link href={`/permis/${params.permisId}/courses/${course.id}`}>
                                                                 <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
                                                                     show
                                                                 </p>
                                                             </Link>
-                                                            <Link href={`/educations/${education.id}/questions`}>
+                                                            <Link href={`/permis/${params.permisId}/courses/${course.id}/questions`}>
 
                                                                 <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
                                                                     gerer les questions
                                                                 </p>
                                                             </Link>
-                                                            <Link href={`/educations/${education.id}/edit`}>
+                                                            <Link href={`/permis/${params.permisId}/courses/${course.id}/edit`}>
                                                                 <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
                                                                     edit
                                                                 </p>
@@ -176,7 +195,7 @@ export default async function EducationRoutierePage() {
 
                                                         </div>
                                                         <div className="py-2 first:pt-0 last:pb-0">
-                                                            <a   onClick={() => handleDelete(education.id)} className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
+                                                            <a  onClick={() => handleDelete(course.id)} className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
                                                                 Delete
                                                             </a>
                                                         </div>
@@ -226,11 +245,13 @@ export default async function EducationRoutierePage() {
         </>
     );
 }
-
-async function fetchEducations() {
-    const res = await axios.get("http://127.0.0.1:8000/api/educationRoutieres");
+async function fetchCourses(id) {
+    const res = await axios.get(`http://127.0.0.1:8000/api/permis/${id}/courses`);
     return res.data;
-    // req to api
+}
+async function fetchPermit() {
+    const res = await axios.get(`http://127.0.0.1:8000/api/permis`);
+    return res.data;
 }
 
 

@@ -5,17 +5,17 @@ import { useEffect,useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 
-export default function EducationRoutiereShowPage({params}) {
+export default function CourseDetailsPage({params}) {
 
-  const [Education, setEducation] = useState([]);
+  const [course, setCourse] = useState([]);
 
   useEffect(() => {
     // Fetch data for the specific item with the given ID
-    axios.get(`http://127.0.0.1:8000/api/educationRoutieres/${params.id}`)
+    axios.get(`http://127.0.0.1:8000/api/courses/${params.id}`)
       .then(response => {
         // Assuming response.data contains the data for the item
         
-        setEducation(response.data);
+        setCourse(response.data);
         // setLoading(false);
   
       })
@@ -26,19 +26,6 @@ export default function EducationRoutiereShowPage({params}) {
 
   return (
     <>
-     <div className="flex items-center justify-between mb-4 md:mb-6 lg:mb-8">
-     <a href="/educations">
-     <button className="px-3 py-3 rounded-full bg-primary-600">               
-                            <ChevronLeftIcon
-                                className="w-6 h-6"
-                                strokeWidth="2.5"
-                            />
-                       
-             </button>
-     </a>
-   
-        <h1 className="mb-2 text-3xl font-bold text-slate-900">Gerer les cours d'E.R</h1>
-    </div>
        <div className="overflow-x-auto">
         <div className="p-1.5 mt-40 min-w-full inline-block align-middle">
             <div className="overflow-hidden bg-white border shadow-sm border-slate-200 rounded-xl">
@@ -80,50 +67,51 @@ export default function EducationRoutiereShowPage({params}) {
                     </thead>
 
                     <tbody className="divide-y divide-slate-200">
-                                {Education && Object.values(Education).map(education => (
-                                    <tr key={education.id}>
-                                        <td className="whitespace-nowrap">
-                                            <div className="px-6 py-3">
-                                                <div className="flex items-center gap-x-2">
-                                                    <div className="grow">
-                                                        <span className="text-sm md:text-base text-slate-600">
-                                                        {education.img && <img src={education.img} alt="Education Image" className="h-16 w-16" />}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td className="whitespace-nowrap">
-                                            <div className="px-6 py-3">
-                                                <div className="flex items-center gap-x-2">
-                                                    <div className="grow">
-                                                        <span className="text-sm md:text-base text-slate-600">
-                                                            {education.title}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td className="whitespace-nowrap">
-                                            <div className="px-6 py-3">
+                        {course && Object.values(course).map(course => (
+                            <tr key={course.id}>
+                               
+                                <td className="whitespace-nowrap">
+                                    <div className="px-6 py-3">
+                                        <div className="flex items-center gap-x-2">
+                                            <div className="grow">
                                                 <span className="text-sm md:text-base text-slate-600">
-                                                    {education.content}
+                                                {course.img && <img src={course.img} alt="course Image" className="h-16 w-16" />}
                                                 </span>
                                             </div>
-                                        </td>
+                                        </div>
+                                    </div>
+                                </td>
 
-                                        <td className="whitespace-nowrap">
-                                            <div className="px-6 py-3 text-center">
+                                <td className="whitespace-nowrap">
+                                    <div className="px-6 py-3">
+                                        <div className="flex items-center gap-x-2">
+                                            <div className="grow">
                                                 <span className="text-sm md:text-base text-slate-600">
-                                                    {education.questionsNum}
+                                                    {course.title}
                                                 </span>
                                             </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td className="whitespace-nowrap">
+                                    <div className="px-6 py-3">
+                                        <span className="text-sm md:text-base text-slate-600">
+                                            {course.content}
+                                        </span>
+                                    </div>
+                                </td>
+
+                                <td className="whitespace-nowrap">
+                                    <div className="px-6 py-3 text-center">
+                                        <span className="text-sm md:text-base text-slate-600 justify-center">
+                                            {course.questionsNum}
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
             </div>
         </div>

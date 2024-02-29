@@ -11,10 +11,10 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        
+
       },
       colors: {
-        primary : {
+        primary: {
           100: "#efcfd1",
           200: "#df9fa3",
           300: "#ce6e75",
@@ -24,10 +24,12 @@ module.exports = {
           700: "#68080f",
           800: "#46060a",
           900: "#230305",
-      }
+        }
       },
-     
+
     },
   },
-  plugins: [require("preline/plugin")],
+  plugins: [require("preline/plugin")
+  // require("@preline/dropdown")
+  ],
 };

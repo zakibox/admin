@@ -1,31 +1,22 @@
 'use client'
-
 import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon, PlusIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
 import Link from "next/link";
-
-export default async function EducationRoutierePage() {
-
-
-    // const locale = useLocale
-
-    const educations = await fetchEducations();
-     console.log(educations)
-    // Check for errors
-    if (educations.errors) {
-        throw Error("Error fetching educations");
-    }
-    
-
-     function handleDelete(id) {
+import axios from "axios";
+export default async function PanneauxPage({ params }) {
+    // const [panneaux, setPanneaux] = useState([]);
+    // const [permit, setPermit] = useState([]);
+  
+    const panneaux = await fetchPanneaux();
+ 
+    function handleDelete(id) {
         try {
-             axios.delete(`http://127.0.0.1:8000/api/educationRoutieres/${id}`);
+            axios.delete(`http://127.0.0.1:8000/api/panneaux/${id}`);
             // After successful deletion, you might want to update the UI by refetching the education items
-            console.log("Education item deleted successfully");
-            window.location.href = "/educations";
+            console.log("panneaux item deleted successfully");
+            window.location.href = `/permis/${params.permisId}/panneaux`;
             // You can also update the educations state if necessary
         } catch (error) {
-            console.error("Error deleting education item:", error);
+            console.error("Error deleting panneaux item:", error);
         }
     }
     return (
@@ -33,15 +24,15 @@ export default async function EducationRoutierePage() {
 
             <div className="flex items-center justify-between mb-4 md:mb-6 lg:mb-8">
 
-                <h1 className="mb-2 text-3xl font-bold text-slate-900">Gerer les cours d'E.R</h1>
-                <Link href={`/educations/create`}>
+                <h1 className="mb-2 text-3xl font-bold text-slate-900">Gerer les panneaux</h1>
+                <Link href={`panneaux/create`}>
                     <button
                         className="p-3 md:px-6 inline-flex items-center gap-x-2 text-sm md:text-base font-semibold rounded-lg border border-transparent bg-primary-500 text-white hover:bg-primary-600 disabled:opacity-50 disabled:pointer-events-none  " data-hs-overlay="#hs-scroll-inside-body-modal"
                         href="#"
                     >
                         <PlusIcon className="w-4 h-4" strokeWidth={2.5} />
                         <span className="hidden md:inline-block">
-                            Ajouter une E.R
+                            ajouter un panneaux
                         </span>
                     </button>
                 </Link>
@@ -60,7 +51,7 @@ export default async function EducationRoutierePage() {
                                     >
                                         <div className="flex items-center gap-x-2">
                                             <span className="text-xs font-semibold tracking-wide uppercase md:text-base text-slate-800 ">
-                                                img
+                                                id
                                             </span>
                                         </div>
                                     </th>
@@ -82,7 +73,7 @@ export default async function EducationRoutierePage() {
                                     >
                                         <div className="flex items-center gap-x-2">
                                             <span className="text-xs font-semibold tracking-wide uppercase md:text-base text-slate-800 ">
-                                                content
+                                                description
                                             </span>
                                         </div>
                                     </th>
@@ -104,15 +95,15 @@ export default async function EducationRoutierePage() {
                             </thead>
 
                             <tbody className="divide-y divide-slate-200">
-                                {Object.values(educations.data) && (educations.data).map(education => (
-                                    <tr key={education.id}>
+                                {panneaux.data && (panneaux.data).map(panel => (
+                                    <tr key={panel.id}>
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3">
                                                 <div className="flex items-center gap-x-2">
                                                     <div className="grow">
                                                         <span className="text-sm md:text-base text-slate-600">
-                                                        {education.img && <img src={education.img} alt="Education Image" className="h-16 w-auto" />}
-                                                           
+                                                            {panel.id}
+
                                                         </span>
                                                     </div>
 
@@ -125,7 +116,7 @@ export default async function EducationRoutierePage() {
                                                 <div className="flex items-center gap-x-2">
                                                     <div className="grow">
                                                         <span className="text-sm md:text-base text-slate-600">
-                                                            {education.title}
+                                                            {panel.title}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -135,7 +126,7 @@ export default async function EducationRoutierePage() {
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3">
                                                 <span className="text-sm md:text-base text-slate-600">
-                                                    {education.content}
+                                                    {panel.description}
                                                 </span>
                                             </div>
                                         </td>
@@ -143,10 +134,10 @@ export default async function EducationRoutierePage() {
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3 text-center">
                                                 <span className="text-sm md:text-base text-slate-600">
-                                                    {education.questionsNum}
+                                                    {panel.questionsNum}
                                                 </span>
                                             </div>
-                                           
+
                                         </td>
                                         <td className="h-px w-px whitespace-nowrap">
                                             <div className="px-6 py-1.5">
@@ -157,18 +148,18 @@ export default async function EducationRoutierePage() {
                                                     </button>
                                                     <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-gray-200 min-w-[10rem] z-10 bg-white shadow-2xl rounded-lg p-2 mt-2">
                                                         <div className="py-2 first:pt-0 last:pb-0">
-                                                            <Link href={`/educations/${education.id}`}>
+                                                            <Link href={`/permis/${params.permisId}/panneaux/${panel.id}`}>
                                                                 <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
                                                                     show
                                                                 </p>
                                                             </Link>
-                                                            <Link href={`/educations/${education.id}/questions`}>
+                                                            <Link href={`/permis/${params.permisId}/panneaux/${panel.id}/questions`}>
 
                                                                 <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
                                                                     gerer les questions
                                                                 </p>
                                                             </Link>
-                                                            <Link href={`/educations/${education.id}/edit`}>
+                                                            <Link href={`/permis/${params.permisId}/panneaux/${panel.id}/edit`}>
                                                                 <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
                                                                     edit
                                                                 </p>
@@ -176,7 +167,7 @@ export default async function EducationRoutierePage() {
 
                                                         </div>
                                                         <div className="py-2 first:pt-0 last:pb-0">
-                                                            <a   onClick={() => handleDelete(education.id)} className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
+                                                            <a  onClick={() => handleDelete(panel.id)} className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
                                                                 Delete
                                                             </a>
                                                         </div>
@@ -223,14 +214,14 @@ export default async function EducationRoutierePage() {
                     </div>
                 </div>
             </div>
+
+
         </>
     );
 }
 
-async function fetchEducations() {
-    const res = await axios.get("http://127.0.0.1:8000/api/educationRoutieres");
+async function fetchPanneaux() {
+    const res = await axios.get(`http://127.0.0.1:8000/api/panneaux`);
     return res.data;
-    // req to api
 }
-
 

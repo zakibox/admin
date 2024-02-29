@@ -29,7 +29,7 @@ const defaultValues = {
     questions: [defaultQuestion],
 };
 
-function createPage({ params }) {
+function editPage({ params }) {
     const {
         control,
         register,
@@ -49,12 +49,31 @@ function createPage({ params }) {
         control,
         name: "questions",
     });
+
+    const [initialData, setInitialData] = useState({});
+    //   const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Fetch data for the specific item with the given ID
+        axios.get(`http://127.0.0.1:8000/api/questions/${params.questionId}`)
+            .then(response => {
+                // Assuming response.data contains the data for the item
+                console.log(response.data)
+                setInitialData(response.data);
+                // setLoading(false);
+
+            })
+            .catch(error => {
+
+                console.error('Error fetching data:', error);
+            });
+    }, [params.questionId]);
     const onSubmit = async (data) => {
         try {
-            await axios.post('http://127.0.0.1:8000/api/questions', data.data);
+            await axios.put(`http://127.0.0.1:8000/api/questions/${params.questionId}`, data.data);
             // Redirect to the list of courses page after successful submission
             console.log(data.data)
-            window.location.href = `/educations/${params.id}/questions`;
+            window.location.href = `/permis/${params.permisId}/courses/${params.id}/questions`;
         } catch (error) {
             console.error('Error adding education:', error);
         }
@@ -66,14 +85,14 @@ function createPage({ params }) {
 
                 <div className="p-4 sm:p-7 flex flex-col bg-gray-100 rounded-2xl shadow-lg ">
                     <div className="text-center">
-                        <h1 className="block text-3xl font-bold text-primary-600 ">nouvelle question</h1>
+                        <h1 className="block text-3xl font-bold text-primary-600 ">mise a jour question</h1>
                     </div>
                     <div className="mt-5">
                         <div className="grid grid-cols-1 gap-4">
 
                             <div>
                                 <div className="relative">
-                                    <input type="text"   {...register("data.audio")} id="hs-hero-signup-form-floating-input-company-name" className="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-900 focus:ring-blue-900 disabled:opacity-50 disabled:pointer-events-none 
+                                    <input type="text"   {...register("data.audio")} defaultValue={initialData?.data?.audio} id="hs-hero-signup-form-floating-input-company-name" className="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-900 focus:ring-blue-900 disabled:opacity-50 disabled:pointer-events-none 
                                 focus:pt-6
                                 focus:pb-2
                                 [&:not(:placeholder-shown)]:pt-6
@@ -93,7 +112,7 @@ function createPage({ params }) {
 
                             <div>
                                 <div className="relative">
-                                    <input type="text"   {...register("data.explanation.fr")} id="hs-hero-signup-form-floating-input-company-name" className="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-900 focus:ring-blue-900 disabled:opacity-50 disabled:pointer-events-none 
+                                    <input type="text"   {...register("data.explanation.fr")} defaultValue={initialData?.data?.explanation} id="hs-hero-signup-form-floating-input-company-name" className="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-900 focus:ring-blue-900 disabled:opacity-50 disabled:pointer-events-none 
                                 focus:pt-6
                                 focus:pb-2
                                 [&:not(:placeholder-shown)]:pt-6
@@ -116,7 +135,7 @@ function createPage({ params }) {
                             <div>
 
                                 <div className="relative">
-                                    <input type="text" {...register("data.explanation.ar")} id="hs-hero-signup-form-floating-input-company-name" className="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none 
+                                    <input type="text" {...register("data.explanation.ar")} defaultValue={initialData?.data?.explanation.ar} id="hs-hero-signup-form-floating-input-company-name" className="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none 
                                                 focus:pt-6
                                                 focus:pb-2
                                                 [&:not(:placeholder-shown)]:pt-6
@@ -147,7 +166,7 @@ function createPage({ params }) {
                             </div>
                             <div>
                                 <div className="relative">
-                                    <input type="hidden"    {...register("data.questionable_type")} defaultValue={'App\\Models\\EducationRoutiere'} id="hs-hero-signup-form-floating-input-company-name" className=" peer  w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-900 focus:ring-blue-900 disabled:opacity-50 disabled:pointer-events-none 
+                                    <input type="hidden"    {...register("data.questionable_type")} defaultValue={'App\\Models\\course'} id="hs-hero-signup-form-floating-input-company-name" className=" peer  w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-900 focus:ring-blue-900 disabled:opacity-50 disabled:pointer-events-none 
                                 focus:pt-6
                                 focus:pb-2
                                 [&:not(:placeholder-shown)]:pt-6
@@ -166,11 +185,22 @@ function createPage({ params }) {
 
                                             <div key={i}>
 
-                                                <input type="text" {...register(`data.sub_questions_list.questions.${i}.text`)}
+                                                <input type="text" {...register(`data.sub_questions_list.questions.${i}.text.fr`)} 
 
-                                                    className="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none 
+                                                    className="peer p-4 block w-full mb-4 border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none 
                                                 focus:pt-6
                                                 focus:pb-2
+                                                [&:not(:placeholder-shown)]:pt-6
+                                                [&:not(:placeholder-shown)]:pb-2
+                                                autofill:pt-6
+                                                autofill:pb-2"
+
+                                                />
+                                                <input type="text" {...register(`data.sub_questions_list.questions.${i}.text.ar`)} 
+
+                                                    className="peer p-4 block w-full mt-4 border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none 
+                                                    focus:pt-6
+                                                                    focus:pb-2
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
@@ -228,4 +258,4 @@ function createPage({ params }) {
     );
 }
 
-export default createPage;
+export default editPage;

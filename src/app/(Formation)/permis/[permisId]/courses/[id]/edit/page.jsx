@@ -11,7 +11,7 @@ import { uploadBytes, ref , getDownloadURL} from "firebase/storage";
 import { z } from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const EditEducation = ({ params }) => {
+const EditCourse = ({ params }) => {
   const schema = z.object({
     data: z.object({
       title: z.object({
@@ -36,7 +36,7 @@ const EditEducation = ({ params }) => {
 
   useEffect(() => {
     // Fetch data for the specific item with the given ID
-    axios.get(`http://127.0.0.1:8000/api/educationRoutieres/${params.id}`)
+    axios.get(`http://127.0.0.1:8000/api/courses/${params.id}`)
       .then(response => {
         // Assuming response.data contains the data for the item
         console.log(response.data)
@@ -67,12 +67,12 @@ const EditEducation = ({ params }) => {
         data.data.img = url;
       }
      
-      await axios.put(`http://127.0.0.1:8000/api/educationRoutieres/${params.id}`, data.data);
+      await axios.put(`http://127.0.0.1:8000/api/courses/${params.id}`, data.data);
       // Redirect to the list of courses page after successful submission
 
-      window.location.href = "/educations";
+      window.location.href = `/permis/${params.permisId}/courses`;
     } catch (error) {
-      console.error('Error updating education:', error);
+      console.error('Error updating courses:', error);
     }
   };
   
@@ -84,7 +84,7 @@ const EditEducation = ({ params }) => {
 
         <div className="p-4 sm:p-7 flex flex-col bg-gray-100 rounded-2xl shadow-lg ">
           <div className="text-center">
-            <h1 className="block text-3xl font-bold text-primary-600 ">mise a jour education</h1>
+            <h1 className="block text-3xl font-bold text-primary-600 ">mise a jour du cours</h1>
           </div>
           <div className="mt-5">
             <div className="grid grid-cols-1 gap-4">
@@ -203,4 +203,4 @@ const EditEducation = ({ params }) => {
   );
 };
 
-export default EditEducation;
+export default EditCourse;

@@ -54,7 +54,7 @@ function createPage({ params }) {
             await axios.post('http://127.0.0.1:8000/api/questions', data.data);
             // Redirect to the list of courses page after successful submission
             console.log(data.data)
-            window.location.href = `/educations/${params.id}/questions`;
+            window.location.href = `/permis/${params.permisId}/courses/${params.id}/questions`;
         } catch (error) {
             console.error('Error adding education:', error);
         }
@@ -147,7 +147,7 @@ function createPage({ params }) {
                             </div>
                             <div>
                                 <div className="relative">
-                                    <input type="hidden"    {...register("data.questionable_type")} defaultValue={'App\\Models\\EducationRoutiere'} id="hs-hero-signup-form-floating-input-company-name" className=" peer  w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-900 focus:ring-blue-900 disabled:opacity-50 disabled:pointer-events-none 
+                                    <input type="hidden"    {...register("data.questionable_type")} defaultValue={'App\\Models\\course'} id="hs-hero-signup-form-floating-input-company-name" className=" peer  w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-900 focus:ring-blue-900 disabled:opacity-50 disabled:pointer-events-none 
                                 focus:pt-6
                                 focus:pb-2
                                 [&:not(:placeholder-shown)]:pt-6

@@ -30,10 +30,10 @@ function AnswerFields({ questionIndex, control, register }) {
                                                 focus:pb-2"
 
                     />
-                    <input type="checkbox" {...register(`data.sub_questions_list.questions.${questionIndex}.answers.${i}.isCorrect`)} className="shrink-0 mt-0.5 border-gray-200 rounded text-primary-600 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none "
-                        id="name" 
+                    <input type="checkbox" {...register(`data.sub_questions_list.questions.${questionIndex}.answers.${i}.isCorrect`)} className="shrink-0 mt-0.5 border-gray-200 rounded text-primary-600 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none " 
+                        id="name"
                     />
-
+                   
 
 
                     {canRemoveAnswer && (

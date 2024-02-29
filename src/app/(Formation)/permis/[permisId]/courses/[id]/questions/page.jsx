@@ -1,47 +1,58 @@
 'use client'
 
-import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, ChevronRightIcon, PlusIcon ,TrashIcon, EyeIcon, PencilIcon,PencilSquareIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default async function EducationRoutierePage() {
 
-
-    // const locale = useLocale
-
-    const educations = await fetchEducations();
-     console.log(educations)
-    // Check for errors
-    if (educations.errors) {
-        throw Error("Error fetching educations");
-    }
+export default  function questionsPage({params}) {
+ const [questions, setQuestions]= useState([])
+ useEffect(() => {
+    axios.get(`http://127.0.0.1:8000/api/${params.id}/course/questions`)
+        .then(response => {
+            console.log(response.data)
+            setQuestions(response.data);
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+}, [params.id]);
+    // const questions = await fetchQuestions();
+    //  console.log(questions)
+    // // Check for errors
+    // if (educations.errors) {
+    //     throw Error("Error fetching questions");
+    // }
     
 
-     function handleDelete(id) {
+     async function handleDelete(id) {
         try {
-             axios.delete(`http://127.0.0.1:8000/api/educationRoutieres/${id}`);
+
+           await  axios.delete(`http://127.0.0.1:8000/api/${params.id}/course/questions/${id}`);
             // After successful deletion, you might want to update the UI by refetching the education items
-            console.log("Education item deleted successfully");
-            window.location.href = "/educations";
+            
+            window.location.href = `/permis/${params.permisId}/courses/${params.id}/questions`;
             // You can also update the educations state if necessary
         } catch (error) {
-            console.error("Error deleting education item:", error);
+            console.error("Error deleting question item:", error);
         }
+        console.log(id);
     }
     return (
         <>
 
             <div className="flex items-center justify-between mb-4 md:mb-6 lg:mb-8">
 
-                <h1 className="mb-2 text-3xl font-bold text-slate-900">Gerer les cours d'E.R</h1>
-                <Link href={`/educations/create`}>
+                <h1 className="mb-2 text-3xl font-bold text-slate-900">Gerer les questions</h1>
+                <Link href={`/permis/${params.permisId}/courses/${params.id}/questions/create`}>
                     <button
                         className="p-3 md:px-6 inline-flex items-center gap-x-2 text-sm md:text-base font-semibold rounded-lg border border-transparent bg-primary-500 text-white hover:bg-primary-600 disabled:opacity-50 disabled:pointer-events-none  " data-hs-overlay="#hs-scroll-inside-body-modal"
                         href="#"
                     >
                         <PlusIcon className="w-4 h-4" strokeWidth={2.5} />
                         <span className="hidden md:inline-block">
-                            Ajouter une E.R
+                            Ajouter une question
                         </span>
                     </button>
                 </Link>
@@ -60,7 +71,7 @@ export default async function EducationRoutierePage() {
                                     >
                                         <div className="flex items-center gap-x-2">
                                             <span className="text-xs font-semibold tracking-wide uppercase md:text-base text-slate-800 ">
-                                                img
+                                                audio
                                             </span>
                                         </div>
                                     </th>
@@ -71,61 +82,28 @@ export default async function EducationRoutierePage() {
                                     >
                                         <div className="flex items-center gap-x-2">
                                             <span className="text-xs font-semibold tracking-wide uppercase md:text-base text-slate-800 ">
-                                                title
+                                                explanation
                                             </span>
                                         </div>
                                     </th>
 
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-start"
-                                    >
-                                        <div className="flex items-center gap-x-2">
-                                            <span className="text-xs font-semibold tracking-wide uppercase md:text-base text-slate-800 ">
-                                                content
-                                            </span>
-                                        </div>
-                                    </th>
-
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-start"
-                                    >
-                                        <span className="text-xs font-semibold tracking-wide uppercase md:text-base text-slate-800 ">
-                                            numero de questions
-                                        </span>
-                                    </th>
-
+                                   
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-end"
                                     ></th>
                                 </tr>
                             </thead>
-
                             <tbody className="divide-y divide-slate-200">
-                                {Object.values(educations.data) && (educations.data).map(education => (
-                                    <tr key={education.id}>
-                                        <td className="whitespace-nowrap">
-                                            <div className="px-6 py-3">
-                                                <div className="flex items-center gap-x-2">
-                                                    <div className="grow">
-                                                        <span className="text-sm md:text-base text-slate-600">
-                                                        {education.img && <img src={education.img} alt="Education Image" className="h-16 w-auto" />}
-                                                           
-                                                        </span>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </td>
+                                {questions.data && Object.values(questions.data).map(question => (
+                                    <tr key={question.id}>
 
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3">
                                                 <div className="flex items-center gap-x-2">
                                                     <div className="grow">
                                                         <span className="text-sm md:text-base text-slate-600">
-                                                            {education.title}
+                                                            {question.audio}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -135,7 +113,7 @@ export default async function EducationRoutierePage() {
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3">
                                                 <span className="text-sm md:text-base text-slate-600">
-                                                    {education.content}
+                                                    {question.explanation}
                                                 </span>
                                             </div>
                                         </td>
@@ -143,46 +121,46 @@ export default async function EducationRoutierePage() {
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3 text-center">
                                                 <span className="text-sm md:text-base text-slate-600">
-                                                    {education.questionsNum}
+                                                    {/* {question.sub_questions_list} */}
                                                 </span>
                                             </div>
                                            
                                         </td>
                                         <td className="h-px w-px whitespace-nowrap">
-                                            <div className="px-6 py-1.5">
+                                            {/* <div className="px-6 py-1.5">
                                                 <div className="hs-dropdown relative inline-block [--placement:bottom-right]">
                                                     <button type="button" className="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-lg text-gray-700 align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-primary-600 transition-all text-sm">
 
                                                         <svg className="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
                                                     </button>
                                                     <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-gray-200 min-w-[10rem] z-10 bg-white shadow-2xl rounded-lg p-2 mt-2">
-                                                        <div className="py-2 first:pt-0 last:pb-0">
-                                                            <Link href={`/educations/${education.id}`}>
-                                                                <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-                                                                    show
-                                                                </p>
-                                                            </Link>
-                                                            <Link href={`/educations/${education.id}/questions`}>
-
-                                                                <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-                                                                    gerer les questions
-                                                                </p>
-                                                            </Link>
-                                                            <Link href={`/educations/${education.id}/edit`}>
-                                                                <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-                                                                    edit
-                                                                </p>
-                                                            </Link>
-
-                                                        </div>
-                                                        <div className="py-2 first:pt-0 last:pb-0">
-                                                            <a   onClick={() => handleDelete(education.id)} className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
-                                                                Delete
-                                                            </a>
-                                                        </div>
+                                                        
+                                                        
                                                     </div>
                                                 </div>
+                                                
+                                            </div> */}
+                                            <Link href={`/permis/${params.permisId}/courses/${params.id}/questions/${question.id}`}>
+                                                                <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
+                                                                   
+                                                                   <EyeIcon  className="w-5 h-5" strokeWidth={2.5}/>
+                                                                   
+                                                                </p>
+                                                            </Link>
+                                            <div className="py-2 first:pt-0 last:pb-0">
+                                                            <a  onClick={() => handleDelete(question.id)}className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
+                                                                <TrashIcon className="w-5 h-5" strokeWidth={2.5} />
+                                                            </a>
+                                                       
+                                                           
+                                                           <Link href={`/permis/${params.permisId}/courses/${params.id}/questions/${question.id}/edit`}>
+                                                               <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
+                                                                   <PencilSquareIcon className="w-5 h-5" strokeWidth={2.5}/>
+                                                               </p>
+                                                           </Link>
+
                                             </div>
+                                                        
                                         </td>
                                     </tr>
                                 ))}
@@ -223,14 +201,14 @@ export default async function EducationRoutierePage() {
                     </div>
                 </div>
             </div>
+            
         </>
     );
 }
-
-async function fetchEducations() {
-    const res = await axios.get("http://127.0.0.1:8000/api/educationRoutieres");
-    return res.data;
-    // req to api
-}
+// async function fetchQuestions({params}) {
+//     const res = await axios.get(`http://127.0.0.1:8000/api/questions/${params.id}`);
+//     return res.data;
+//     // req to api
+// }
 
 
