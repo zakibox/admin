@@ -1,0 +1,274 @@
+{
+  "sidebar": {
+    "dashboard": "لوحة التحكم",
+    "formation": "التعلم",
+    "courses": "الدروس",
+    "panneaux": "التشوير الطرقي",
+    "educations": "التربية الطرقية"
+  },
+  "education": {
+    "Index": {
+      "title": "العنوان",
+      "img": "الصور",
+      "content": "المحتوى",
+      "questionsNum": "عدد الأسئلة",
+      "gerer": "إدارة الدورات التعليمية",
+      "button": "إضافة دورة تعليمية",
+      "plus": {
+        "show": "مشاهدة",
+        "edit": "تغيير",
+        "questions": "إدارة الأسئلة"
+      }
+    },
+    "show": {
+      "h1": "تفاصيل الدرس التعليمي",
+      "title": "العنوان",
+      "img": "الصور",
+      "content": "المحتوى",
+      "questionsNum": "عدد الأسئلة"
+    },
+    "edit": {
+      "h1": "تغيير التربية",
+      "button": "إختيار الصورة",
+      "titre": "العنوان بالفرنسية",
+      "titreAr": "العنوان",
+      "questionsNum": "عدد الأسئلة",
+      "content": "المحتوى بالفرنسية",
+      "contentAr": "المحتوى",
+      "submit": "تفعيل"
+    },
+    "create": {
+      "h1": "إضافة التربية الطرقية",
+      "button": "إختيار الصورة",
+      "titre": "العنوان بالفرنسية",
+      "titreAr": "العنوان",
+      "questionsNum": "عدد الأسئلة",
+      "content": "المحتوى بالفرنسية",
+      "contentAr": "المحتوى",
+      "submit": "تفعيل"
+    },
+    "questions": {
+      "index": {
+        "h1": "الأسئلة",
+        "audio": "الأصوات",
+        "explanation": "الشرح",
+        "button": "إضافة سؤال"
+      },
+      "show": {
+        "h1": "معلومات إضافية",
+        "audio": "الصوت",
+        "explanation": "التفسير",
+        "sub_questions_list": "الأسئلة"
+      },
+      "create": {
+        "h1": "إضافة سؤال",
+        "audio": "الصوت",
+        "explanation": "التفسير بالفرنسية",
+        "explanationAr": "التفسير",
+        "new question": "إضافة سؤال",
+        "remove": "إزالة سؤال",
+        "question": "سؤال بالفرنسية",
+        "questionAr": "سؤال",
+        "answer": "جواب بالفرنسية",
+        "answerAr": "جواب",
+        "new answer": "إضافة سؤال"
+      },
+      "edit": {
+        "h1" : "تغيير السؤال",
+        "audio": "الصوت",
+        "explanation": "بالفرنسية التفسير",
+        "explanationAr": " التفسير بالفرنسية",
+        "new question": "إضافة سؤال",
+        "remove": "إزالة سؤال",
+        "question": "سؤال بالفرنسية",
+        "questionAr": "سؤال",
+        "answer": "جواب بالفرنسية",
+        "answerAr": "جواب",
+        "new answer": "إضافة جواب"
+      }
+    }
+  },
+  "courses": {
+    "Index": {
+      "title": "العنوان",
+      "img": "الصور",
+      "content": "المحتوى",
+      "questionsNum": "عدد الأسئلة",
+      "gerer": "إدارة الدروس",
+      "button": "إضافة درس",
+      "choix de permis": "إختيار رخصة القيادة",
+      "plus": {
+        "show": "مشاهدة",
+        "edit": "تغيير",
+        "questions": "إدارة الأسئلة"
+      },
+      "page" :"الصفحة",
+      "prev":"السابق",
+      "next":"اللاحق"
+    },
+    "show": {
+      "h1": "تفاصيل الدرس ",
+      "title": "العنوان",
+      "img": "الصور",
+      "content": "المحتوى",
+      "questionsNum": "عدد الأسئلة",
+      "prev": "السابق",
+      "next": "اللاحق",
+      "page": "الصفحة"
+    },
+    "edit": {
+      "h1": "تغيير الدرس",
+      "button": "إختيار الصورة",
+      "titre": "العنوان بالفرنسية",
+      "titreAr": "العنوان",
+      "questionsNum": "عدد الأسئلة",
+      "content": "المحتوى بالفرنسية",
+      "contentAr": "المحتوى",
+      "submit": "تفعيل"
+    },
+    "create": {
+      "h1": "إضافة الدرس",
+      "button": "إختيار الصورة",
+      "titre": "العنوان بالفرنسية",
+      "titreAr": "العنوان",
+      "questionsNum": "عدد الأسئلة",
+      "content": "المحتوى بالفرنسية",
+      "contentAr": "المحتوى",
+      "submit": "تفعيل"
+    },
+    "questions": {
+      "index": {
+        "h1": "الأسئلة",
+        "audio": "الأصوات",
+        "explanation": "الشرح",
+        "button": "إضافة سؤال",
+        "prev": "السابق",
+      "next": "اللاحق",
+      "page": "الصفحة"
+      },
+      "show": {
+        "h1": "معلومات إضافية",
+        "audio": "الصوت",
+        "explanation": "التفسير",
+        "sub_questions_list": "الأسئلة"
+      },
+      "create": {
+        "h1": "إضافة سؤال",
+        "audio": "الصوت",
+        "explanation": "التفسير بالفرنسية",
+        "explanationAr": "التفسير",
+        "new question": "إضافة سؤال",
+        "remove": "إزالة سؤال",
+        "question": "سؤال بالفرنسية",
+        "questionAr": "سؤال",
+        "answer": "جواب بالفرنسية",
+        "answerAr": "جواب",
+        "new answer": "إضافة سؤال"
+      },
+      "edit": {
+        "h1":"تغيير السؤال",
+        "audio": "الصوت",
+        "explanation": " التفسير",
+        "explanationAr": " التفسير بالفرنسية",
+        "new question": "إضافة سؤال",
+        "remove": "إزالة سؤال",
+        "question": "سؤال بالفرنسية",
+        "questionAr": "سؤال",
+        "answer": "جواب بالفرنسية",
+        "answerAr": "جواب",
+        "new answer": "إضافة جواب"
+      }
+    }
+  },
+  "panneaux": {
+    "Index": {
+      "id": "الرقم التعريفي",
+      "title": "العنوان",
+      "description": "الوصف",
+      "questionsNum": "عدد الأسئلة",
+      "gerer": "إدارة اللافتات",
+      "button": "إضافة لافتة",
+      "plus": {
+        "show": "مشاهدة",
+        "edit": "تغيير",
+        "questions": "إدارة الأسئلة"
+      },
+      "prev": "السابق",
+      "next": "اللاحق",
+      "page": "الصفحة"
+    },
+    "show": {
+      "h1": "تفاصيل اللافتة ",
+      "title": "العنوان",
+      "description": "الوصف",
+      "questionsNum": "عدد الأسئلة",
+      "panneauxItems": {
+        "permis": "رخص السياقة "
+      }
+    },
+    "edit": {
+      "h1": "تغيير الدرس",
+      "button": "إختيار الصورة",
+      "titre": "العنوان بالفرنسية",
+      "titreAr": "العنوان",
+      "questionsNum": "عدد الأسئلة",
+      "description": "الوصف بالفرنسية",
+      "descriptionAr": "الوصف",
+      "submit": "تفعيل"
+    },
+    "create": {
+      "h1": "إضافة لافتة",
+      "button": "إختيار الصورة",
+      "titre": "العنوان بالفرنسية",
+      "titreAr": "العنوان",
+      "questionsNum": "عدد الأسئلة",
+      "description": "المحتوى بالفرنسية",
+      "descriptionAr": "المحتوى",
+      "submit": "تفعيل"
+    },
+   
+    "questions": {
+      "index": {
+        "h1": "الأسئلة",
+        "audio": "الأصوات",
+        "explanation": "الشرح",
+        "button": "إضافة سؤال",
+        "prev": "السابق",
+      "next": "اللاحق",
+      "page": "الصفحة"
+      },
+      "show": {
+        "h1": "معلومات إضافية",
+        "audio": "الصوت",
+        "explanation": "التفسير",
+        "sub_questions_list": "الأسئلة"
+      },
+      "create": {
+        "h1":"إضافة أسئلة",
+        "audio": "الصوت",
+        "explanation": "التفسير بالفرنسية",
+        "explanationAr": "التفسير",
+        "new question": "إضافة سؤال",
+        "remove": "إزالة سؤال",
+        "question": "سؤال بالفرنسية",
+        "questionAr": "سؤال",
+        "answer": "جواب بالفرنسية",
+        "answerAr": "جواب",
+        "new answer": "إضافة جواب"
+      },
+      "edit": {
+        "h1":"تغيير السؤال",
+        "audio": "الصوت",
+        "explanation": " التفسير بالفرنسية ",
+        "explanationAr": "التفسير ",
+        "new question": "إضافة سؤال",
+        "remove": "إزالة سؤال",
+        "question": "سؤال بالفرنسية",
+        "questionAr": "سؤال",
+        "answer": "جواب بالفرنسية",
+        "answerAr": "جواب",
+        "new answer": "إضافة جواب"
+      }
+    }
+  }
+}

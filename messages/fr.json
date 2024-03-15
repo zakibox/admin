@@ -1,0 +1,268 @@
+{
+  "sidebar": {
+    "dashboard": "dashboard",
+    "formation": "formation",
+    "courses": "cours",
+    "panneaux": "panneaux",
+    "educations": "education"
+  },
+  "education": {
+    "Index": {
+      "title": "titre",
+      "img": "image",
+      "content": "contenue",
+      "questionsNum": "num.questions",
+      "gerer": "Gerer les cours d'E.R",
+      "button": "ajouter une E.R",
+      "plus": {
+        "show": "aficher",
+        "edit": "modifier",
+        "questions": "gerer les questions"
+      }
+    },
+    "show": {
+      "h1": "afficher un E.R",
+      "title": "titre",
+      "img": "image",
+      "content": "contenue",
+      "questionsNum": "numero de questions"
+    },
+    "edit": {
+      "h1": "mise a jour education",
+      "button": "choisir un fichier ",
+      "titre": "titre",
+      "titreAr": "titre en arabe",
+      "questionsNum": "numero de questions",
+      "content": "contenue",
+      "contentAr": "contenue en arabe",
+      "submit": "valider"
+    },
+    "create": {
+      "h1": "nouvelle education",
+      "button": "choisir un fichier ",
+      "titre": "titre",
+      "titreAr": "titre en arabe",
+      "questionsNum": "numero de questions",
+      "content": "contenue",
+      "contentAr": "contenue en arabe",
+      "submit": "valider"
+    },
+    "questions": {
+      "index": {
+        "h1": "gerer les questions",
+        "audio": "audio",
+        "explanation": "explication",
+        "button": "ajouter une question"
+      },
+      "show": {
+        "h1": "details d'un question",
+        "audio": "audio",
+        "explanation": "explication",
+        "sub_questions_list": "les questions"
+      },
+      "create": {
+        "h1": "question ajout ",
+        "audio": "audio",
+        "explanation": "explication",
+        "explanationAr": "explication en arabe",
+        "new question": "ajouter une question",
+        "remove": "supprimer question",
+        "question": "question",
+        "questionAr": "question en arabe",
+        "answer": "reponse",
+        "answerAr": "reponse en arabe",
+        "new answer": "ajouter une reponse"
+      },
+      "edit": {
+        "h1": "question mise a jour",
+        "audio": "audio",
+        "explanation": "explication",
+        "explanationAr": "explication en arabe",
+        "new question": "ajouter une question",
+        "remove": "supprimer question",
+        "question": "question",
+        "questionAr": "question en arabe",
+        "answer": "reponse",
+        "answerAr": "reponse en arabe",
+        "new answer": "ajouter une reponse"
+      }
+    }
+  },
+  "courses": {
+    "Index": {
+      "title": "titre",
+      "img": "image",
+      "content": "contenue",
+      "questionsNum": "num.questions",
+      "gerer": "Gerer les cours",
+      "button": "ajouter un cours",
+      "choix de permis": "choisir un permis",
+      "plus": {
+        "show": "aficher",
+        "edit": "modifier",
+        "questions": "gerer les questions"
+      },
+      "prev": "precedent",
+      "next": "suivant",
+      "page": "page"
+    },
+    "show": {
+      "h1": "afficher un E.R",
+      "title": "titre",
+      "img": "image",
+      "content": "contenue",
+      "questionsNum": "numero de questions"
+    },
+    "edit": {
+      "h1": "mise a jour education",
+      "button": "choisir un fichier ",
+      "titre": "titre",
+      "titreAr": "titre en arabe",
+      "questionsNum": "numero de questions",
+      "content": "contenue",
+      "contentAr": "contenue en arabe",
+      "submit": "valider"
+    },
+    "create": {
+      "h1": "cours ajout ",
+      "button": "choisir un fichier ",
+      "titre": "titre",
+      "titreAr": "titre en arabe",
+      "questionsNum": "numero de questions",
+      "content": "contenue",
+      "contentAr": "contenue en arabe",
+      "submit": "valider"
+    },
+    "questions": {
+      "index": {
+        "h1": "gerer les questions",
+        "audio": "audio",
+        "explanation": "explication",
+        "button": "ajouter une question",
+        "prev": "precedent",
+        "next": "suivant",
+        "page": "page"
+      },
+      "show": {
+        "h1": "details d'un question",
+        "audio": "audio",
+        "explanation": "explication",
+        "sub_questions_list": "les questions"
+      },
+      "create": {
+        "h1": "ajout d'une question",
+        "audio": "audio",
+        "explanation": "explication",
+        "explanationAr": "explication en arabe",
+        "new question": "ajouter une question",
+        "remove": "supprimer question",
+        "question": "question",
+        "questionAr": "question en arabe",
+        "answer": "reponse",
+        "answerAr": "reponse en arabe",
+        "new answer": "ajouter une reponse"
+      },
+      "edit": {
+        "h1" :"question mise a jour",
+        "audio": "audio",
+        "explanation": "explication",
+        "explanationAr": "explication en arabe",
+        "new question": "ajouter une question",
+        "remove": "supprimer question",
+        "question": "question",
+        "questionAr": "question en arabe",
+        "answer": "reponse",
+        "answerAr": "reponse en arabe",
+        "new answer": "ajouter une reponse"
+      }
+    }
+  },
+  "panneaux": {
+    "Index": {
+      "id": "id",
+      "title": "titre",
+      "description": "description",
+      "questionsNum": "num.questions",
+      "gerer": "Gerer les cours",
+      "button": "ajouter un panneaux",
+      "plus": {
+        "show": "aficher",
+        "edit": "modifier",
+        "questions": "gerer les questions"
+      },
+      "prev": "precedent",
+      "next": "suivant",
+      "page": "page"
+    },
+    "show": {
+      "h1": "afficher un panneaux",
+      "title": "titre",
+      "description": "description",
+      "questionsNum": "numero de questions",
+      "panneauxItems": {
+        "permis": "permis associé"
+      }
+    },
+    "edit": {
+      "h1": "mise a jour panneaux",
+      "titre": "titre",
+      "titreAr": "titre en arabe",
+      "questionsNum": "numero de questions",
+      "description": "description",
+      "descriptionAr": "description en arabe",
+      "submit": "valider"
+    },
+    "create": {
+      "h1": " panneaux ajout",
+      "titre": "titre",
+      "titreAr": "titre en arabe",
+      "questionsNum": "numero de questions",
+      "description": "description",
+      "descriptionAr": "description en arabe",
+      "submit": "valider"
+    },
+    "questions": {
+      "index": {
+        "h1": "gerer les questions",
+        "audio": "audio",
+        "explanation": "explication",
+        "button": "ajouter une question",
+        "prev": "precedent",
+        "next": "suivant",
+        "page": "page"
+      },
+      "show": {
+        "h1": "details d'un question",
+        "audio": "audio",
+        "explanation": "explication",
+        "sub_questions_list": "les questions"
+      },
+      "create": {
+        "h1":"ajout d'une question",
+        "audio": "audio",
+        "explanation": "explication",
+        "explanationAr": "explication en arabe",
+        "new question": "ajouter une question",
+        "remove": "supprimer question",
+        "question": "question",
+        "questionAr": "question en arabe",
+        "answer": "reponse",
+        "answerAr": "reponse en arabe",
+        "new answer": "ajouter une reponse"
+      },
+      "edit": {
+        "h1":"question mise a jour",
+        "audio": "audio",
+        "explanation": "explication",
+        "explanationAr": "explication en arabe",
+        "new question": "ajouter une question",
+        "remove": "supprimer question",
+        "question": "question",
+        "questionAr": "question en arabe",
+        "answer": "reponse",
+        "answerAr": "reponse en arabe",
+        "new answer": "ajouter une reponse"
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 
-export function RouteNestedItem({ route, isActive }) {
+export function RouteNestedItem({ route, isActive, locale }) {
     return (
         <li className="hs-accordion" id={`${route.text}-accordion`}>
             <button
@@ -23,7 +23,7 @@ export function RouteNestedItem({ route, isActive }) {
                         <li key={y}>
                           <Link
                                 className="flex items-center aria-[current=page]:text-primary-500 aria-[current=page]:bg-slate-100 gap-x-3.5 py-2 px-2.5 text-sm  md:text-base text-slate-700 rounded-lg hover:bg-slate-100 "
-                                href={`${nest.to}`}
+                                href={`/${locale}${nest.to}`}
                             >
                                 {nest.text}
                             </Link>
