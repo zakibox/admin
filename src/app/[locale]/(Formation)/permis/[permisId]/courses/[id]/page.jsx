@@ -102,7 +102,7 @@ export default async function CourseDetailsPage({ params: { id, permisId, locale
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3 text-center">
                                                 <span className="text-sm md:text-base text-slate-600 justify-center">
-                                                    {course.questionsNum}
+                                                    {course.questions_num}
                                                 </span>
                                             </div>
                                         </td>

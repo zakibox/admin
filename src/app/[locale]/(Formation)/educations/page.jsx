@@ -2,13 +2,13 @@
 import { ChevronLeftIcon, ChevronRightIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import Link from "next/link";
-import deleteTodo from "../../../../actions/formation"
+import { deleteEducation } from "../../../../actions/formation"
 import { getTranslations } from "next-intl/server";
 
 
 export default async function EducationRoutierePage({ params: { locale } }) {
 
-  
+
     if (locale != "fr" && locale != 'ar') {
         throw new Error(" route not found")
     }
@@ -32,12 +32,12 @@ export default async function EducationRoutierePage({ params: { locale } }) {
     //         console.error("Error deleting education item:", error);
     //     }
     // }
-// intl translation attribute
-const t= await getTranslations('education.Index');
-// to strip html tags from the data i get from backend 
-const stripHtmlTags = (html) => {
-    return html.replace(/(<([^>]+)>)/ig, '');
-};
+    // intl translation attribute
+    const t = await getTranslations('education.Index');
+    // to strip html tags from the data i get from backend 
+    const stripHtmlTags = (html) => {
+        return html.replace(/(<([^>]+)>)/ig, '');
+    };
     return (
         <>
 
@@ -145,7 +145,7 @@ const stripHtmlTags = (html) => {
                                         <td className="whitespace-nowrap">
                                             <div className="px-6 py-3  ">
                                                 <span className="text-sm md:text-base text-slate-600 ">
-                                                {stripHtmlTags(education.content[locale])}
+                                                    {stripHtmlTags(education.content[locale])}
                                                 </span>
                                             </div>
                                         </td>
@@ -169,27 +169,28 @@ const stripHtmlTags = (html) => {
                                                         <div className="py-2 first:pt-0 last:pb-0">
                                                             <Link href={`/${locale}/educations/${education.id}`}>
                                                                 <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-                                                                   {t('plus.show')}
+                                                                    {t('plus.show')}
                                                                 </p>
                                                             </Link>
                                                             <Link href={`/${locale}/educations/${education.id}/questions`}>
 
                                                                 <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-                                                                {t('plus.questions')}
+                                                                    {t('plus.questions')}
                                                                 </p>
                                                             </Link>
                                                             <Link href={`/${locale}/educations/${education.id}/edit`}>
                                                                 <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-                                                                {t('plus.edit')}
+                                                                    {t('plus.edit')}
                                                                 </p>
                                                             </Link>
 
                                                         </div>
                                                         <div className="py-2 first:pt-0 last:pb-0">
-                                                            <form action={deleteTodo}>
+                                                            <form action={deleteEducation}>
                                                                 <input type="hidden" name="id" value={education.id} />
-                                                                <button className="p-3 transition-colors duration-200 bg-indigo-100 rounded-full hover:bg-red-500 hover:text-white">
-                                                                    <TrashIcon className="size-4" strokeWidth={2} />
+                                                                <input type="hidden" name="locale" value={locale} />
+                                                                <button  className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500">
+                                                                 delete
                                                                 </button>
                                                             </form>
                                                         </div>
@@ -207,10 +208,11 @@ const stripHtmlTags = (html) => {
                         <div className="grid gap-3 px-6 py-4 border-t border-slate-200 md:flex md:justify-between md:items-center ">
                             <div>
                                 <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">
+
+                                    {t('page')}{" "}
                                     <span className="font-semibold text-slate-800 dark:text-slate-200">
                                         1
-                                    </span>{" "}
-                                    results
+                                    </span>
                                 </p>
                             </div>
 
@@ -220,13 +222,13 @@ const stripHtmlTags = (html) => {
                                         className="inline-flex items-center px-3 py-2 text-sm font-medium bg-white border rounded-lg shadow-sm md:text-base text-slate-800 border-slate-200 gap-x-2 hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none"
                                     >
                                         <ChevronLeftIcon className="w-3 h-3" />
-                                        Prev
+                                        {t('prev')}
                                     </button>
 
                                     <button
                                         className="inline-flex items-center px-3 py-2 text-sm font-medium bg-white border rounded-lg shadow-sm md:text-base text-slate-800 border-slate-200 gap-x-2 hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none"
                                     >
-                                        Next
+                                        {t('next')}
                                         <ChevronRightIcon className="w-3 h-3" />
                                     </button>
                                 </div>

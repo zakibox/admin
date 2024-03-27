@@ -3,6 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon, EllipsisVerticalIcon, PlusIcon } fro
 import Link from "next/link";
 import axios from "axios";
 import { getTranslations } from "next-intl/server";
+import { deletePanneaux } from "@/actions/formation";
 export default async function PanneauxPage({ params: { permisId, locale } }) {
 
     const panneaux = await fetchPanneaux();
@@ -169,9 +170,14 @@ export default async function PanneauxPage({ params: { permisId, locale } }) {
 
                                                         </div>
                                                         <div className="py-2 first:pt-0 last:pb-0">
-                                                            <a className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
-                                                                Delete
-                                                            </a>
+                                                        <form action={deletePanneaux}>
+                                                                <input type="hidden" name="id" value={panel.id} />
+                                                                <input type="hidden" name="locale" value={locale} />
+                                                                <input type="hidden" name="permisId" value={permisId}/>
+                                                                <button  className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500">
+                                                                 delete
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

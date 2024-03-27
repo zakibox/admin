@@ -18,7 +18,10 @@
         "show": "aficher",
         "edit": "modifier",
         "questions": "gerer les questions"
-      }
+      },
+      "prev": "precedent",
+      "next": "suivant",
+      "page": "page"
     },
     "show": {
       "h1": "afficher un E.R",
@@ -52,13 +55,21 @@
         "h1": "gerer les questions",
         "audio": "audio",
         "explanation": "explication",
-        "button": "ajouter une question"
+        "button": "ajouter une question",
+        "page": "page",
+        "prev": "precedent",
+        "next": "suivant"
       },
       "show": {
         "h1": "details d'un question",
         "audio": "audio",
         "explanation": "explication",
-        "sub_questions_list": "les questions"
+        "sub_questions_list": "les questions",
+        "plus" : {
+          "show": "afficher",
+          "edit": "modifier",
+          "delete" : "supprimer"
+         }
       },
       "create": {
         "h1": "question ajout ",
@@ -107,7 +118,7 @@
       "page": "page"
     },
     "show": {
-      "h1": "afficher un E.R",
+      "h1": "afficher une course",
       "title": "titre",
       "img": "image",
       "content": "contenue",
@@ -183,7 +194,7 @@
       "title": "titre",
       "description": "description",
       "questionsNum": "num.questions",
-      "gerer": "Gerer les cours",
+      "gerer": "Gerer les panneaux",
       "button": "ajouter un panneaux",
       "plus": {
         "show": "aficher",
@@ -200,7 +211,10 @@
       "description": "description",
       "questionsNum": "numero de questions",
       "panneauxItems": {
-        "permis": "permis associé"
+        "permis": "permis associé",
+        "add item": "ajouter item",
+        "show": "afficher",
+        "edit": "modifier"
       }
     },
     "edit": {

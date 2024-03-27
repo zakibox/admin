@@ -1,5 +1,6 @@
 // 'use client'
 
+import { deleteCourse } from "@/actions/formation";
 import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import { getTranslations } from "next-intl/server";
@@ -191,9 +192,14 @@ export default async function coursePage({ params: {permisId, locale} }) {
 
                                                         </div>
                                                         <div className="py-2 first:pt-0 last:pb-0">
-                                                            <a  className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
-                                                                Delete
-                                                            </a>
+                                                        <form action={deleteCourse}>
+                                                                <input type="hidden" name="id" value={course.id} />
+                                                                <input type="hidden" name="locale" value={locale} />
+                                                                <input type="hidden" name="permisId" value={permisId}/>
+                                                                <button  className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500">
+                                                                 delete
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

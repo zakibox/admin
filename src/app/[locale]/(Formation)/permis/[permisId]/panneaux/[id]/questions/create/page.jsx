@@ -72,7 +72,7 @@ function createPage({ params: { permisId, locale, id } }) {
     };
     return (
 
-        <form className="flex gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className="px-20 flex gap-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="justify-center items-center w-full" >
 
                 <div className="p-4 sm:p-7 flex flex-col bg-gray-100 rounded-2xl shadow-lg ">

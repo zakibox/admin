@@ -89,7 +89,7 @@ const EditEducation = ({ params: {locale, id} }) => {
      </Link>
     <form   onSubmit={handleSubmit(onSubmit)}>
    
-      <div className="justify-center items-center" >
+      <div className=" px-20 justify-center items-center" >
 
         <div className="p-4 sm:p-7 flex flex-col bg-gray-100 rounded-2xl shadow-lg ">
           <div className="text-center">

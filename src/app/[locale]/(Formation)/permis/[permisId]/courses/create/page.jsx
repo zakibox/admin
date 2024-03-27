@@ -47,11 +47,7 @@ function addCourse({ params: {permisId,locale} }) {
     // resolver: zodResolver(schema),
   });
 
-  useEffect(() => {
-    // Set initial value for FroalaEditor
-    setValue("data.content.fr", "This is the initial content");
-    setValue("data.content.ar", "هذا هو ");
-  }, [setValue]);
+
 
 
   const onSubmit = async (data) => {
@@ -81,7 +77,7 @@ function addCourse({ params: {permisId,locale} }) {
     <div>
       <form onSubmit={handleSubmit(onSubmit)} >
 
-        <div className="justify-center items-center" >
+        <div className="px-20 justify-center items-center" >
 
           <div className="p-4 sm:p-7 flex flex-col  bg-gray-100 rounded-2xl shadow-lg ">
             <div className="text-center">

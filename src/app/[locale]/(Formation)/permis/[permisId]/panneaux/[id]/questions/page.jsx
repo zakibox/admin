@@ -1,28 +1,29 @@
 
 
-import { ChevronLeftIcon, ChevronRightIcon, PlusIcon ,TrashIcon, EyeIcon, PencilIcon,PencilSquareIcon } from "@heroicons/react/24/outline";
+import { deletePanneauxQuestion } from "@/actions/formation";
+import { ChevronLeftIcon, ChevronRightIcon, PlusIcon, TrashIcon, EyeIcon, PencilIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
 
 
-export default async function questionsPage({params: {id, permisId,locale}}) {
+export default async function questionsPage({ params: { id, permisId, locale } }) {
 
     const questions = await fetchQuestions(id);
-     console.log(questions)
+    console.log(questions)
     // Check for errors
     if (questions.errors) {
         throw Error("Error fetching questions");
     }
-    
+
 
     //  async function handleDelete(id) {
     //     try {
 
     //        await  axios.delete(`http://127.0.0.1:8000/api/permis/${permisId}/${id}/panneaux/questions/${id}`);
     //         // After successful deletion, you might want to update the UI by refetching the education items
-            
+
     //         window.location.href = `/panneaux/${id}/questions`;
     //         // You can also update the educations state if necessary
     //     } catch (error) {
@@ -44,7 +45,7 @@ export default async function questionsPage({params: {id, permisId,locale}}) {
                     >
                         <PlusIcon className="w-4 h-4" strokeWidth={2.5} />
                         <span className="hidden md:inline-block">
-                           {t('button')}
+                            {t('button')}
                         </span>
                     </button>
                 </Link>
@@ -79,7 +80,7 @@ export default async function questionsPage({params: {id, permisId,locale}}) {
                                         </div>
                                     </th>
 
-                                   
+
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-end"
@@ -110,48 +111,39 @@ export default async function questionsPage({params: {id, permisId,locale}}) {
                                             </div>
                                         </td>
 
-                                        <td className="whitespace-nowrap">
-                                            <div className="px-6 py-3 text-center">
-                                                <span className="text-sm md:text-base text-slate-600">
-                                                    {/* {question.sub_questions_list} */}
-                                                </span>
-                                            </div>
-                                           
-                                        </td>
+
                                         <td className="h-px w-px whitespace-nowrap">
-                                            {/* <div className="px-6 py-1.5">
+                                            <div className="px-6 py-1.5">
                                                 <div className="hs-dropdown relative inline-block [--placement:bottom-right]">
                                                     <button type="button" className="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-lg text-gray-700 align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-primary-600 transition-all text-sm">
 
                                                         <svg className="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
                                                     </button>
                                                     <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-gray-200 min-w-[10rem] z-10 bg-white shadow-2xl rounded-lg p-2 mt-2">
-                                                        
-                                                        
+
+                                                        <Link href={`/${locale}/permis/${permisId}/panneaux/${id}/questions/${question.id}`}>
+                                                            <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
+                                                                afficher
+                                                            </p>
+                                                        </Link>
+                                                        <Link href={`/${locale}/permis/${permisId}/panneaux/${id}/questions/${question.id}/edit`}>
+                                                            <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
+                                                                edit
+                                                            </p>
+                                                        </Link>
+                                                        <div className="py-2 first:pt-0 last:pb-0">
+                                                        <form action={deletePanneauxQuestion}>
+                                                                <input type="hidden" name="questionid" value={question.id} />
+                                                                <input type="hidden" name="locale" value={locale} />
+                                                                <input type="hidden" name="id" value={id} />
+                                                                <button className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
+                                                                    delete
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                
-                                            </div> */}
-                                            <Link href={`/${locale}/permis/${permisId}/panneaux/${id}/questions/${question.id}`}>
-                                                                <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-                                                                   
-                                                                   <EyeIcon  className="w-5 h-5" strokeWidth={2.5}/>
-                                                                   
-                                                                </p>
-                                                            </Link>
-                                            <div className="py-2 first:pt-0 last:pb-0">
-                                                            <a className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
-                                                                <TrashIcon className="w-5 h-5" strokeWidth={2.5} />
-                                                            </a>
-                                                       
-                                                           
-                                                           <Link href={`/${locale}/permis/${permisId}/panneaux/${id}/questions/${question.id}/edit`}>
-                                                               <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-                                                                   <PencilSquareIcon className="w-5 h-5" strokeWidth={2.5}/>
-                                                               </p>
-                                                           </Link>
                                             </div>
-                                                        
                                         </td>
                                     </tr>
                                 ))}

@@ -1,5 +1,6 @@
 
 
+import { deleteQuestion } from "@/actions/formation";
 import { ChevronLeftIcon, ChevronRightIcon, PlusIcon, TrashIcon, EyeIcon, PencilIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import { getTranslations } from "next-intl/server";
@@ -7,17 +8,17 @@ import Link from "next/link";
 
 
 
-export default async function questionsPage({ params : {id , locale} }) {
-   
+export default async function questionsPage({ params: { id, locale } }) {
+
     const questions = await fetchQuestions(id);
-     console.log(questions)
+    console.log(questions)
     // Check for errors
     if (questions.errors) {
         throw Error("Error fetching questions");
     }
 
-    
-     
+
+
     // async function handleDelete(id) {
     //     try {
 
@@ -36,15 +37,15 @@ export default async function questionsPage({ params : {id , locale} }) {
         <>
 
             <div className="flex items-center justify-between mb-4 md:mb-6 lg:mb-8">
-            <Link href={`/${locale}/educations`}>
-     <button className="px-3 py-3 rounded-full bg-primary-600 text-primary-100">               
-                            <ChevronLeftIcon
-                                className="w-6 h-6"
-                                strokeWidth="2.5"
-                            />
-                       
-             </button>
-     </Link>
+                <Link href={`/${locale}/educations`}>
+                    <button className="px-3 py-3 rounded-full bg-primary-600 text-primary-100">
+                        <ChevronLeftIcon
+                            className="w-6 h-6"
+                            strokeWidth="2.5"
+                        />
+
+                    </button>
+                </Link>
                 <h1 className="mb-2 text-3xl font-bold text-slate-900">{t('index.h1')}</h1>
                 <Link href={`/${locale}/educations/${id}/questions/create`}>
                     <button
@@ -53,7 +54,7 @@ export default async function questionsPage({ params : {id , locale} }) {
                     >
                         <PlusIcon className="w-4 h-4" strokeWidth={2.5} />
                         <span className="hidden md:inline-block">
-                          {t('index.button')}
+                            {t('index.button')}
                         </span>
                     </button>
                 </Link>
@@ -72,7 +73,7 @@ export default async function questionsPage({ params : {id , locale} }) {
                                     >
                                         <div className="flex items-center gap-x-2">
                                             <span className="text-xs font-semibold tracking-wide uppercase md:text-base text-slate-800 ">
-                                              {t('index.audio')}
+                                                {t('index.audio')}
                                             </span>
                                         </div>
                                     </th>
@@ -128,37 +129,42 @@ export default async function questionsPage({ params : {id , locale} }) {
 
                                         </td>
                                         <td className="h-px w-px whitespace-nowrap">
-                                            {/* <div className="px-6 py-1.5">
+                                            <div className="px-6 py-1.5">
                                                 <div className="hs-dropdown relative inline-block [--placement:bottom-right]">
                                                     <button type="button" className="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-lg text-gray-700 align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-primary-600 transition-all text-sm">
 
                                                         <svg className="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
                                                     </button>
                                                     <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-gray-200 min-w-[10rem] z-10 bg-white shadow-2xl rounded-lg p-2 mt-2">
-                                                        
-                                                        
+                                                        <Link href={`/${locale}/educations/${id}/questions/${question.id}`}>
+                                                            <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
+
+                                                                {t('show.plus.show')}
+
+                                                            </p>
+                                                        </Link>
+                                                        <Link href={`/${locale}/educations/${id}/questions/${question.id}/edit`}>
+                                                            <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
+                                                                {t('show.plus.edit')}
+                                                            </p>
+                                                        </Link>
+
+                                                        <div className="py-2 first:pt-0 last:pb-0">
+                                                            <form action={deleteQuestion}>
+                                                            <input type="hidden" name="questionid" value={question.id} />
+                                                                <input type="hidden" name="locale" value={locale} />
+                                                                <input type="hidden" name="id" value={id} />
+                                                                <button className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
+                                                                    {t('show.plus.delete')}
+                                                                </button>
+
+                                                            </form>
+
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
-                                                
-                                            </div> */}
-                                            <Link href={`/${locale}/educations/${id}/questions/${question.id}`}>
-                                                <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-
-                                                    <EyeIcon className="w-5 h-5" strokeWidth={2.5} />
-
-                                                </p>
-                                            </Link>
-                                            <div className="py-2 first:pt-0 last:pb-0">
-                                                <a  className="flex items-center gap-x-3 py-2 px-3 font-bold rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="#" >
-                                                    <TrashIcon className="w-5 h-5" strokeWidth={2.5} />
-                                                </a>
-
-
-                                                <Link href={`/${locale}/educations/${id}/questions/${question.id}/edit`}>
-                                                    <p className="flex items-center font-bold gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" >
-                                                        <PencilSquareIcon className="w-5 h-5" strokeWidth={2.5} />
-                                                    </p>
-                                                </Link>
 
                                             </div>
 
@@ -176,7 +182,7 @@ export default async function questionsPage({ params : {id , locale} }) {
                                     <span className="font-semibold text-slate-800 dark:text-slate-200">
                                         1
                                     </span>{" "}
-                                    results
+                                    {t('index.page')}
                                 </p>
                             </div>
 
@@ -186,13 +192,13 @@ export default async function questionsPage({ params : {id , locale} }) {
                                         className="inline-flex items-center px-3 py-2 text-sm font-medium bg-white border rounded-lg shadow-sm md:text-base text-slate-800 border-slate-200 gap-x-2 hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none"
                                     >
                                         <ChevronLeftIcon className="w-3 h-3" />
-                                        Prev
+                                        {t('index.prev')}
                                     </button>
 
                                     <button
                                         className="inline-flex items-center px-3 py-2 text-sm font-medium bg-white border rounded-lg shadow-sm md:text-base text-slate-800 border-slate-200 gap-x-2 hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none"
                                     >
-                                        Next
+                                        {t('index.next')}
                                         <ChevronRightIcon className="w-3 h-3" />
                                     </button>
                                 </div>

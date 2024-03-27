@@ -14,23 +14,23 @@ import { useTranslations } from "next-intl";
 
 const EditCourse = ({ params: {permisId,locale,id} }) => {
   const t= useTranslations('courses.edit')
-  const schema = z.object({
-    data: z.object({
-      title: z.object({
-        fr: z.string().min(1),
-        ar: z.string().min(1),
-      }),
-      questions_num: z.string().min(1),
-      content: z.object({
-        fr: z.any(),
-        ar: z.any(),
-      }),
-    }),
-  });
+  // const schema = z.object({
+  //   data: z.object({
+  //     title: z.object({
+  //       fr: z.string().min(1),
+  //       ar: z.string().min(1),
+  //     }),
+  //     questions_num: z.string().min(1),
+  //     content: z.object({
+  //       fr: z.any(),
+  //       ar: z.any(),
+  //     }),
+  //   }),
+  // });
 
   const { register, handleSubmit, setValue, getValues ,errors} = useForm(
     {
-       resolver: zodResolver(schema),
+      //  resolver: zodResolver(schema),
        defaultValues: async () => {
         try {
           const response = await axios.get(`http://127.0.0.1:8000/api/courses/${id}`);
@@ -45,24 +45,6 @@ const EditCourse = ({ params: {permisId,locale,id} }) => {
     }
   );
 
-//   const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   // Fetch data for the specific item with the given ID
-  //   axios.get(`http://127.0.0.1:8000/api/courses/${id}`)
-  //     .then(response => {
-  //       // Assuming response.data contains the data for the item
-  //       console.log(response.data)
-  //       setInitialData(response.data);
-  //       // setLoading(false);
-  
-  //     })
-  //     .catch(error => {
-
-  //       console.error('Error fetching data:', error);
-  //     });
-  // }, [params.id]);
-  
   const [imageUpload, setImageUpload] = useState(null);
   const [img, setImg] = useState(""); 
 
@@ -93,7 +75,7 @@ const EditCourse = ({ params: {permisId,locale,id} }) => {
     <div>
     <form   onSubmit={handleSubmit(onSubmit)}>
    
-      <div className="justify-center items-center" >
+      <div className="px-20 justify-center items-center" >
 
         <div className="p-4 sm:p-7 flex flex-col bg-gray-100 rounded-2xl shadow-lg ">
           <div className="text-center">
@@ -154,7 +136,7 @@ const EditCourse = ({ params: {permisId,locale,id} }) => {
               <div>
 
                 <div className="relative">
-                  <input type="text"  {...register("data.questionsNum")} id="hs-hero-signup-form-floating-input-company-name" className="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none 
+                  <input type="text"  {...register("data.questions_num")} id="hs-hero-signup-form-floating-input-company-name" className="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none 
               focus:pt-6
               focus:pb-2
               [&:not(:placeholder-shown)]:pt-6
@@ -201,6 +183,7 @@ const EditCourse = ({ params: {permisId,locale,id} }) => {
               <div>
               </div>
             </div>
+            <input   type="hidden" {...register('data.permis_id')} defaultValue={permisId} />
             <div className="mt-5">
               <button type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">submit</button>
             </div>

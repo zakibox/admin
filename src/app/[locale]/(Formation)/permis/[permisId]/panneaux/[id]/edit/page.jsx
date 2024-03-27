@@ -12,7 +12,7 @@ import { z } from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from "next-intl";
 
-const EditCourse = ({ params: {id,locale,permisId} }) => {
+const EditPanneaux = ({ params: {id,locale,permisId} }) => {
   const t = useTranslations('panneaux.edit')
   // const schema = z.object({
   //   data: z.object({
@@ -75,7 +75,7 @@ const EditCourse = ({ params: {id,locale,permisId} }) => {
     <div>
     <form onSubmit={handleSubmit(onSubmit)} >
 
-      <div className="justify-center items-center" >
+      <div className="px-20 justify-center items-center" >
 
         <div className="p-4 sm:p-7 flex flex-col  bg-gray-100 rounded-2xl shadow-lg ">
           <div className="text-center">
@@ -203,4 +203,4 @@ const EditCourse = ({ params: {id,locale,permisId} }) => {
   );
 };
 
-export default EditCourse;
+export default EditPanneaux;
