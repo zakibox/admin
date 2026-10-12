@@ -26,4 +26,4 @@ Then open [http://localhost:3000](http://localhost:3000). Configure required env
 ## Portfolio context
 This repository illustrates administration interface structure, reusable React components and multilingual UX. The current dashboard contains sample figures; do not interpret them as real user analytics.
 
-**Maintainer:** [zakibox](https://github.com/zakibox) · [Freelance portfolio and projects](https://github.com/zakibox/project-take).
+**Maintainer:** [zakibox](https://github.com/zakibox) · [Freelance portfolio and projects](https://github.com/zakibox/portfollio).
