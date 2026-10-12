@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Multilingual Education Administration Dashboard
 
-## Getting Started
+A **Next.js 14 / React** administration interface with French and Arabic localization, RTL support, sidebar navigation, and education-related screens.
 
-First, run the development server:
+> This is a code showcase, not a claim of production readiness or complete business workflows.
 
+## Technologies
+- Next.js, React, Tailwind CSS, JavaScript.
+- `next-intl` for locale-based pages and French/Arabic message catalogs.
+- Axios, React Hook Form, Zod, and reusable UI components.
+- Firebase dependency is present; integrations and deployment status must be verified before describing them as active.
+
+## Project structure
+- `src/app/[locale]/`: localized pages and shared layout.
+- `src/app/[locale]/(Formation)/`: education and driving-permit-related views.
+- `src/components/`: reusable elements, sections, and UI components.
+- `messages/ar.json` and `messages/fr.json`: UI translations.
+
+## Run locally
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Then open [http://localhost:3000](http://localhost:3000). Configure required environment variables for external services before testing integrations.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Portfolio context
+This repository illustrates administration interface structure, reusable React components and multilingual UX. The current dashboard contains sample figures; do not interpret them as real user analytics.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Maintainer:** [zakibox](https://github.com/zakibox) · [Freelance portfolio and projects](https://github.com/zakibox/project-take).
